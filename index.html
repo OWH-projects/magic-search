@@ -1,0 +1,28 @@
+<input type="text" placeholder=" Team search" id="search">
+<style id="search_style"></style>
+
+<!-- example searchable items -->
+<!-- anything in the data-index attribute is searchable -->
+<!-- if the item doesn't match the search input, it'll be hidden from the page -->
+
+	<div class="item searchable" data-index="search-term-1"></div>
+	<div class="item searchable" data-index="search-term-2"></div>
+	<div class="item searchable" data-index="search-term-3"></div>
+	<div class="item searchable" data-index="search-term-4"></div>
+
+
+
+
+<script>
+	var searchStyle = document.getElementById('search_style');
+		document.getElementById('search').addEventListener('input', function() {
+			if (!this.value) {
+				searchStyle.innerHTML = "";
+			return;
+		}
+			// look ma, no indexOf!
+			searchStyle.innerHTML = ".searchable:not([data-index*=\"" + this.value.toLowerCase() + "\"]) { display: none; }";
+			$('span.games-count').hide();
+	  		// beware of css injections!
+	});
+</script>
